@@ -1,0 +1,55 @@
+Here are the detailed explanations of the feature implementations for the release notes:
+
+1. Improved Code Maintainability and Readability
+We have refactored the codebase to enhance both its maintainability and readability. This includes:
+
+Refactoring complex functions: Simplified large and complex functions into smaller, more manageable pieces.
+Consistent naming conventions: Applied uniform naming conventions across the entire codebase for variables, functions, and classes.
+Documentation: Added comprehensive comments and documentation to facilitate easier understanding and collaboration among developers.
+Code formatting: Enforced consistent code formatting rules, such as proper indentation, spacing, and line breaks, to improve overall readability.
+
+2. Enhanced Logging for Better Traceability
+Logging mechanisms have been improved to allow better tracing of each request. This includes:
+
+Detailed request logging: Each incoming request is now logged with more detailed information, including request parameters, user identifiers, and timestamps.
+
+Correlation IDs: Introduced correlation IDs to trace a single request across different services and components.
+
+3. Simplified Addition of New Features
+The architecture has been updated to allow for easier addition of new features without impacting existing implementations. This includes:
+
+Modular design: 
+
+1. Implemented a modular design pattern, where new features can be added as independent modules.
+2. Implemented a single point of communication between genesys and plugin for better Maintainability and logging.
+
+5. Splunk Logging for Development Environment
+Splunk logging has been added specifically for the development environment to aid in monitoring and debugging:
+
+6. Configurable Key-Value Information Fetching Priority
+The priority for fetching key-value information can now be configured, allowing flexibility in different environments:
+
+Priority configuration: Added configuration options to set the priority order for fetching key-value information from different sources (e.g., ESP parameters, Interaction server, default).
+Fallback mechanisms: Implemented fallback mechanisms to ensure that if the primary source is unavailable, the system can automatically switch to the next source in the priority list.
+7. Offline Bot Loading Capability Improvement
+The offline bot's loading capability has been significantly improved:
+
+Faster loading: Optimized the bot's loading process to reduce startup times and improve overall performance.
+
+8. Backward Compatibility for Plugin Support
+Plugins now support backward compatibility with previous versions, ensuring smooth operation without additional configuration:
+
+Compatibility layer: Introduced a compatibility layer that allows plugins from previous versions to work seamlessly with the current system.
+Automatic adjustments: Implemented mechanisms to automatically adjust plugin configurations to match the current environment.
+Thorough testing: Conducted extensive testing to ensure that existing plugins continue to function correctly without requiring changes.
+These improvements collectively enhance the robustness, usability, and flexibility of the system, ensuring a better experience for both developers and end-users.
+
+-----
+Convince points for markets to upgrade 3.X
+
+1. Configurable Key-Value Information Fetching Priority for resolving the empty value.
+2. Tracking other source value as well for trtacking - we can check which datasource containg what value of the particular key
+3. Implemented a single point of communication between cloudgen and plugin for better Maintainability and logging.
+4. Implemented a modular design pattern, where new features can be added as independent modules.
+5. Added more configurabale logging for tracing more information.
+6. New plugin built upon a java 11
