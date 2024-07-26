@@ -1,0 +1,83 @@
+Tracking User Data from Multiple Sources
+In an application, user data might come from multiple sources. To manage and track this data effectively, the application can follow a structured approach to determine which source contains the value for a particular key and provide tracking information from all sources.
+
+Data Sources
+KeyValueMap: A map containing key-value pairs.
+InteractionServerUserdata: Data from an interaction server.
+InteractionRequestUserdata: Data from an interaction request.
+Properties File: Data stored in a properties file.
+Flow Explanation
+1. Primary Source: KeyValueMap
+Step 1: Check if the key exists in KeyValueMap.
+Step 2: If the key is found, return the value from KeyValueMap.
+Step 3: Provide tracking information from InteractionServerUserdata, InteractionRequestUserdata, and Properties File.
+Result: The final value is from KeyValueMap.
+Example:
+
+KeyValueMap: exampleKey = "valueFromKeyValueMap"
+InteractionServerUserdata: exampleKey = "valueFromInteractionServerUserdata"
+InteractionRequestUserdata: exampleKey = "valueFromInteractionRequestUserdata"
+Properties File: exampleKey = "valueFromPropertiesFile"
+Output:
+
+Final Value: "valueFromKeyValueMap"
+Tracking:
+InteractionServerUserdata: "valueFromInteractionServerUserdata"
+InteractionRequestUserdata: "valueFromInteractionRequestUserdata"
+Properties File: "valueFromPropertiesFile"
+2. Secondary Source: InteractionServerUserdata
+Step 1: If the key is not found in KeyValueMap, check InteractionServerUserdata.
+Step 2: If the key is found, return the value from InteractionServerUserdata.
+Step 3: Provide tracking information from KeyValueMap (empty), InteractionRequestUserdata, and Properties File.
+Result: The final value is from InteractionServerUserdata.
+Example:
+
+KeyValueMap: exampleKey is not found.
+InteractionServerUserdata: exampleKey = "valueFromInteractionServerUserdata"
+InteractionRequestUserdata: exampleKey = "valueFromInteractionRequestUserdata"
+Properties File: exampleKey = "valueFromPropertiesFile"
+Output:
+
+Final Value: "valueFromInteractionServerUserdata"
+Tracking:
+KeyValueMap: "" (empty)
+InteractionRequestUserdata: "valueFromInteractionRequestUserdata"
+Properties File: "valueFromPropertiesFile"
+3. Tertiary Source: InteractionRequestUserdata
+Step 1: If the key is not found in KeyValueMap and InteractionServerUserdata, check InteractionRequestUserdata.
+Step 2: If the key is found, return the value from InteractionRequestUserdata.
+Step 3: Provide tracking information from KeyValueMap (empty), InteractionServerUserdata (empty), and Properties File.
+Result: The final value is from InteractionRequestUserdata.
+Example:
+
+KeyValueMap: exampleKey is not found.
+InteractionServerUserdata: exampleKey is not found.
+InteractionRequestUserdata: exampleKey = "valueFromInteractionRequestUserdata"
+Properties File: exampleKey = "valueFromPropertiesFile"
+Output:
+
+Final Value: "valueFromInteractionRequestUserdata"
+Tracking:
+KeyValueMap: "" (empty)
+InteractionServerUserdata: "" (empty)
+Properties File: "valueFromPropertiesFile"
+4. Final Source: Properties File
+Step 1: If the key is not found in KeyValueMap, InteractionServerUserdata, and InteractionRequestUserdata, check the Properties File.
+Step 2: If the key is found, return the value from the Properties File.
+Step 3: Provide tracking information from KeyValueMap (empty), InteractionServerUserdata (empty), and InteractionRequestUserdata (empty).
+Result: The final value is from the Properties File.
+Example:
+
+KeyValueMap: exampleKey is not found.
+InteractionServerUserdata: exampleKey is not found.
+InteractionRequestUserdata: exampleKey is not found.
+Properties File: exampleKey = "valueFromPropertiesFile"
+Output:
+
+Final Value: "valueFromPropertiesFile"
+Tracking:
+KeyValueMap: "" (empty)
+InteractionServerUserdata: "" (empty)
+InteractionRequestUserdata: "" (empty)
+Summary
+The application follows a prioritized flow to determine the final value for a given key. It starts with KeyValueMap, then checks InteractionServerUserdata, followed by InteractionRequestUserdata, and finally falls back to the Properties File. Along with returning the final value, the application provides tracking information from all sources, showing which source provided the value and what values (if any) were present in the other sources. This approach ensures comprehensive tracking and clarity on the source of each value.
